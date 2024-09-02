@@ -64,5 +64,9 @@ class TestAddFunction(unittest.TestCase):
         result = add("//;\n1;2;1001;1000")
         self.assertEqual(result, 1003)
 
+    def test_delimeters_length(self):
+        result = add("//[***]\n1***2***3")
+        self.assertEqual(result, 6)
+
 if __name__ == "__main__":
     unittest.main()
