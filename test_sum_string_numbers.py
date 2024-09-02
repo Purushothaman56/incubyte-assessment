@@ -21,5 +21,9 @@ class TestAddFunction(unittest.TestCase):
         self.assertEqual(new_line_result, 0)
         self.assertEqual(all_spaces, 0)
 
+    def test_input_single_digit_zero(self):
+        result = add("0")
+        self.assertEqual(result, 0)
+
 if __name__ == "__main__":
     unittest.main()
