@@ -45,5 +45,11 @@ class TestAddFunction(unittest.TestCase):
         self.assertEqual(all_same_result, 10)
         self.assertEqual(all_zeros, 0)
 
+    def test_input_with_new_line(self):
+        result_1_with_new_line = add("1\n2,3")
+        result_2_with_new_line = add("1,\n")
+        self.assertEqual(result_1_with_new_line, 6)
+        self.assertEqual(result_2_with_new_line, 1)
+
 if __name__ == "__main__":
     unittest.main()
