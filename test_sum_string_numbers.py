@@ -25,5 +25,17 @@ class TestAddFunction(unittest.TestCase):
         result = add("0")
         self.assertEqual(result, 0)
 
+    def test_input_single_digit_one(self):
+        result = add("1")
+        self.assertEqual(result, 1)
+
+    def test_input_single_digit_nintynine(self):
+        result = add("99")
+        self.assertEqual(result, 99)
+
+    def test_input_single_digit_nintynine_plus_hundred(self):
+        result = add("99,100")
+        self.assertEqual(result, 199)
+
 if __name__ == "__main__":
     unittest.main()
