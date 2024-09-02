@@ -9,7 +9,7 @@ def add(input_string: str = "") -> int:
     
     input_array = striped_input.split("\n")
     if delimeter_list[0] not in input_array[0].strip() \
-        and not input_array[0].strip().isdigit():
+        and not all(i.isdigit() for i in input_array[0].strip()[1:]):
         delimeter_string = input_array[0]
         while "[" in delimeter_string and "]" in delimeter_string:
             delimeter = delimeter_string[:delimeter_string.find("]")+1]
@@ -21,7 +21,7 @@ def add(input_string: str = "") -> int:
         else:
             delimeter = delimeter_string.strip()
             delimeter = delimeter.replace("/", "")
-            delimeter_list.append(delimeter)
+            delimeter_list.append(delimeter) if delimeter else ""
         input_array = input_array[1:]
 
     for item in input_array:

@@ -60,6 +60,21 @@ class TestAddFunction(unittest.TestCase):
             add("//;\n1;2;-3;0;-6")
         self.assertEqual(str(context.exception), "Negatives not allowed: -3, -6")
 
+    def test_input_single_negative(self):
+        with self.assertRaises(ValueError) as context:
+            add("-1")
+        self.assertEqual(str(context.exception), "Negatives not allowed: -1")
+
+    def test_input_all_negatives(self):
+        with self.assertRaises(ValueError) as context:
+            add("-100,-5,-10")
+        self.assertEqual(str(context.exception), "Negatives not allowed: -100, -5, -10")
+
+    def test_input_negatives_with_multiple_delimeters(self):
+        with self.assertRaises(ValueError) as context:
+            add("//[&][**]\n-100&-5**-10")
+        self.assertEqual(str(context.exception), "Negatives not allowed: -100, -5, -10")
+
     def test_input_ignores_bigger_than_1000(self):
         result = add("//;\n1;2;1001;1000")
         self.assertEqual(result, 1003)
