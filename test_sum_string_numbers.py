@@ -37,5 +37,13 @@ class TestAddFunction(unittest.TestCase):
         result = add("99,100")
         self.assertEqual(result, 199)
 
+    def test_input_multiple_digits(self):
+        all_different_result = add("0,,,1,2,3,4,,5,6,7,8,9,10")
+        all_same_result = add("1,,1,1,,1,1,1,1,1,1,1,,,,")
+        all_zeros = add("0,0,0,0,0,0,0,0,0,0,0,0,0,,0,,,0,")
+        self.assertEqual(all_different_result, 55)
+        self.assertEqual(all_same_result, 10)
+        self.assertEqual(all_zeros, 0)
+
 if __name__ == "__main__":
     unittest.main()
