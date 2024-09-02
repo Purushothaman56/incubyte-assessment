@@ -1,24 +1,29 @@
 def add(input_string: str = "") -> int:
     striped_input = input_string.strip()
     result = 0
-    delimeter = ","
+    delimeter_list = [","]
     negatives = []
 
     if not striped_input:
         return result
     
     input_array = striped_input.split("\n")
-    if delimeter not in input_array[0].strip() and not input_array[0].strip().isdigit():
-        delimeter = input_array[0]
-        delimeter = delimeter.replace("/", "")
-        delimeter = delimeter.replace("[", "")
-        delimeter = delimeter.replace("]", "")
+    if delimeter_list[0] not in input_array[0].strip() \
+        and not input_array[0].strip().isdigit():
+        delimeter_string = input_array[0]
+        while "[" in delimeter_string and "]" in delimeter_string:
+            delimeter = delimeter_string[:delimeter_string.find("]")+1]
+            delimeter = delimeter.replace("/", "")
+            delimeter = delimeter.replace("[", "")
+            delimeter = delimeter.replace("]", "")
+            delimeter_list.append(delimeter)
+            delimeter_string = delimeter_string[delimeter_string.find("]")+1:]
         input_array = input_array[1:]
 
     for item in input_array:
-        numbers = [
-            int(i.strip()) for i in item.split(delimeter) if i.strip()
-        ]
+        for delimeter in delimeter_list:
+            item = item.replace(delimeter, " ")
+        numbers = [int(i.strip()) for i in item.split() if i.strip()]
         for num in numbers:
             if num < 0:
                 negatives.append(num)
