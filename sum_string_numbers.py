@@ -2,6 +2,7 @@ def add(input_string: str = "") -> int:
     striped_input = input_string.strip()
     result = 0
     delimeter = ","
+    negatives = []
 
     if not striped_input:
         return result
@@ -16,8 +17,17 @@ def add(input_string: str = "") -> int:
 
     for item in input_array:
         numbers = [
-            int(i.strip()) for i in item.split(delimeter) if i.strip().isdigit()
+            int(i.strip()) for i in item.split(delimeter) if i.strip()
         ]
         for num in numbers:
-            result += num
+            if num < 0:
+                negatives.append(num)
+            elif num > 1000:
+                continue
+            else:
+                result += num
+
+    if negatives:
+        raise ValueError(f"Negatives not allowed: {', '.join(map(str, negatives))}")
+
     return result
