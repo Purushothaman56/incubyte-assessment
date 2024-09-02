@@ -52,16 +52,16 @@ class TestAddFunction(unittest.TestCase):
         self.assertEqual(result_2_with_new_line, 1)
 
     def test_input_with_single_delimeter(self):
-        result = add("//[;]\n1;2")
+        result = add("//;\n1;2")
         self.assertEqual(result, 3)
 
     def test_input_with_negative_numbers(self):
         with self.assertRaises(ValueError) as context:
-            add("//[;]\n1;2;-3;0;-6")
+            add("//;\n1;2;-3;0;-6")
         self.assertEqual(str(context.exception), "Negatives not allowed: -3, -6")
 
     def test_input_ignores_bigger_than_1000(self):
-        result = add("//[;]\n1;2;1001;1000")
+        result = add("//;\n1;2;1001;1000")
         self.assertEqual(result, 1003)
 
     def test_delimeters_length(self):

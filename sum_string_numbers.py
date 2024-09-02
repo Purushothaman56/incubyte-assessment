@@ -18,6 +18,10 @@ def add(input_string: str = "") -> int:
             delimeter = delimeter.replace("]", "")
             delimeter_list.append(delimeter)
             delimeter_string = delimeter_string[delimeter_string.find("]")+1:]
+        else:
+            delimeter = delimeter_string.strip()
+            delimeter = delimeter.replace("/", "")
+            delimeter_list.append(delimeter)
         input_array = input_array[1:]
 
     for item in input_array:
