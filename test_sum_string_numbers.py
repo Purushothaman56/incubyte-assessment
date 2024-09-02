@@ -51,5 +51,9 @@ class TestAddFunction(unittest.TestCase):
         self.assertEqual(result_1_with_new_line, 6)
         self.assertEqual(result_2_with_new_line, 1)
 
+    def test_input_with_single_delimeter(self):
+        result = add("//;\n1;2")
+        self.assertEqual(result, 3)
+
 if __name__ == "__main__":
     unittest.main()
