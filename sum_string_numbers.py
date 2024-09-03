@@ -1,5 +1,4 @@
 def add(input_str: str) -> int:
-    print("input_str", input_str)
     result = 0
     delimeters = [","]
     negatives = []
@@ -25,12 +24,20 @@ def add(input_str: str) -> int:
             numbers_str = delimeter_str + " " + numbers_str
 
     delimeters = delimeters[1:] if len(delimeters) > 1 else delimeters
-    print("delimeters", delimeters)
     for delimeter in delimeters:
         numbers_str = numbers_str.replace(delimeter, " ")
 
-    numbers = [int(i.strip()) for i in numbers_str.split() if i.strip()]
-    print("numbers", numbers)
+    numbers = []
+    for item in numbers_str.split():
+        if item.strip():
+            try:
+                numbers.append(int(item.strip()))
+            except ValueError as e:
+                raise ValueError(
+                    f"Invalid input format: {input_str}"
+                    f"Error detail: {e}"
+                )
+
     for num in numbers:
         if num < 0:
             negatives.append(num)

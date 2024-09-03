@@ -87,11 +87,12 @@ class TestAddFunction(unittest.TestCase):
         result = add("//[**][%%][|][:][_]\n1**2%%3|4:5_6")
         self.assertEqual(result, 21)
 
-# class TestOtherFactors(unittest.TestCase):
+class TestOtherFactors(unittest.TestCase):
 
-#     def test_invalid_delimiter_format(self):
-#         with self.assertRaises(ValueError):
-#             add("//[;[1;2")
+    def test_invalid_delimiter_format(self):
+        with self.assertRaises(ValueError) as context:
+            add("//[;[1;2")
+        self.assertIn("Invalid input format: ", str(context.exception))
 
 if __name__ == "__main__":
     unittest.main()
