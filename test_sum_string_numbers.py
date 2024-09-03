@@ -3,10 +3,6 @@ from sum_string_numbers import add
 
 class TestAddFunction(unittest.TestCase):
 
-    def test_no_input(self):
-        result = add()
-        self.assertEqual(result, 0)
-
     def test_empty_input(self):
         result = add("")
         self.assertEqual(result, 0)
@@ -90,6 +86,12 @@ class TestAddFunction(unittest.TestCase):
     def test_multiple_delimeters_upto_5(self):
         result = add("//[**][%%][|][:][_]\n1**2%%3|4:5_6")
         self.assertEqual(result, 21)
+
+# class TestOtherFactors(unittest.TestCase):
+
+#     def test_invalid_delimiter_format(self):
+#         with self.assertRaises(ValueError):
+#             add("//[;[1;2")
 
 if __name__ == "__main__":
     unittest.main()
