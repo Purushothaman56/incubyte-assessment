@@ -99,5 +99,14 @@ class TestOtherFactors(unittest.TestCase):
             add("1,\n,abc,2")
         self.assertIn("Invalid input format: ", str(context.exception))
 
+    def test_incorrect_order_of_inputs(self):
+        with self.assertRaises(ValueError) as context:
+            add("1,2\n//[;]\n3;4")
+        self.assertIn("Invalid input format: ", str(context.exception))
+
+    def test_incorrect_order_of_inputs_valid_numbers(self):
+        result = add("1;2\n//[;]\n3;4")
+        self.assertEqual(result, 10)
+
 if __name__ == "__main__":
     unittest.main()
