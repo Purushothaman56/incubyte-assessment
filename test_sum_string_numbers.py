@@ -94,5 +94,10 @@ class TestOtherFactors(unittest.TestCase):
             add("//[;[1;2")
         self.assertIn("Invalid input format: ", str(context.exception))
 
+    def test_non_numeric_input(self):
+        with self.assertRaises(ValueError) as context:
+            add("1,\n,abc,2")
+        self.assertIn("Invalid input format: ", str(context.exception))
+
 if __name__ == "__main__":
     unittest.main()
